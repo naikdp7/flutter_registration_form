@@ -18,10 +18,12 @@ class JobRepositoryImpl extends JobRepository {
       switch (response.error) {
         case false:
           return Resource.success<List<Job>>(data: response.transform());
-
         case true:
         default:
-          return Resource.error<List<Job>>(error: response.message);
+          return Resource.error<List<Job>>(
+            error: response.message,
+            code: parseError(response.errorCode),
+          );
       }
     } on Exception catch (e) {
       if (e is HttpException) {

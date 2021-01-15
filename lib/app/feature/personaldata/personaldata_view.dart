@@ -65,20 +65,6 @@ class _ProfileViewState
     });
   }
 
-  showSnackBar(String message) {
-    super.scaffoldKey.currentState.showSnackBar(SnackBar(
-          backgroundColor: AppColors.black,
-          content: Row(
-            children: [
-              Text(
-                message,
-                style: TextStyle(color: AppColors.white),
-              ),
-            ],
-          ),
-        ));
-  }
-
   @override
   Widget buildMobilePortrait(BuildContext context) {
     return PersonalDataMobileView();

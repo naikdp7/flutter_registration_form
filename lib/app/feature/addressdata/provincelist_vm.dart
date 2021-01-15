@@ -27,18 +27,18 @@ class ProvinceListVM extends BaseVM {
   }
 
   getProvices() {
-    setBusy(true);
-    _fetchProvincesUseCase.execute().then((event) {
-      print("event data ${event.data.map((e) => e.toString())}");
-      _error = false;
-      event.data != null ? provinces = event.data : List();
-      if (provinces.isNotEmpty && selectedProvince == null) {
-        _selectedProvince = provinces?.first;
-      }
-      setBusy(false);
-    }).catchError((e) {
-      _error = true;
-      setBusy(false);
-    });
+    executeUseCaseOperation(
+      baseUseCase: _fetchProvincesUseCase,
+      onError: (exception) {
+        _error = true;
+      },
+      onSuccess: (data) {
+        _error = false;
+        data != null ? provinces = data : List();
+        if (provinces.isNotEmpty && selectedProvince == null) {
+          _selectedProvince = provinces?.first;
+        }
+      },
+    );
   }
 }

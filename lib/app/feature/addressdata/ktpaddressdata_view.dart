@@ -61,6 +61,7 @@ class _KtpAddressDataViewState
   @override
   void onModelReady(KtpAddressDataVM model) {
     super.onModelReady(model);
+    super.listenErrorSubject(model.proviceListVM);
     model.proviceListVM.getProvices();
     model.ktpAddressState.listen((value) {
       if (value.isSuccess) {
@@ -71,20 +72,6 @@ class _KtpAddressDataViewState
       }
       showSnackBar(value.message);
     });
-  }
-
-  showSnackBar(String message) {
-    super.scaffoldKey.currentState.showSnackBar(SnackBar(
-          backgroundColor: AppColors.black,
-          content: Row(
-            children: [
-              Text(
-                message,
-                style: TextStyle(color: AppColors.white),
-              ),
-            ],
-          ),
-        ));
   }
 
   @override

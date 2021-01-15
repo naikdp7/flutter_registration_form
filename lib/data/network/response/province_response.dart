@@ -14,6 +14,9 @@ class ProvinceResponse
   @JsonKey(name: 'message', defaultValue: "", includeIfNull: false)
   String message;
 
+  @JsonKey(name:'errorCode',defaultValue: "",includeIfNull: false)
+  String errorCode;
+
   @JsonKey(name: 'provinsi')
   List<ProvinceEntity> provinces;
 

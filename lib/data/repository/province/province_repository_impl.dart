@@ -5,6 +5,8 @@ import 'package:registration_form/domain/model/province.dart';
 import 'package:registration_form/domain/repository/province/province_respository.dart';
 import 'package:registration_form/domain/utils/resource.dart';
 
+import '../../../domain/utils/resource.dart';
+
 class ProvinceRepositoryImpl extends ProvinceRepository {
   final ProvinceRemoteRepositoryDataSource _remoteRepositoryDataSource;
 
@@ -14,14 +16,17 @@ class ProvinceRepositoryImpl extends ProvinceRepository {
   Future<Resource<List<Province>>> getProvinceList() async {
     try {
       final response = await _remoteRepositoryDataSource.getProvinces();
-      print('Response ${response.toJson()}');
       switch (response.error) {
         case false:
-          return Resource.success<List<Province>>(data: response.transform());
-
+          return Resource.success<List<Province>>(
+            data: response.transform(),
+          );
         case true:
         default:
-          return Resource.error<List<Province>>(error: response.message);
+          return Resource.error<List<Province>>(
+            error: response.message,
+            code: parseError(response.errorCode),
+          );
       }
     } on Exception catch (e) {
       if (e is HttpException) {

@@ -6,6 +6,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:registration_form/app/constants/app_colors.dart';
 import 'package:registration_form/app/main/app_vm.dart';
 
+import '../../domain/utils/resource.dart';
 import 'base_vm.dart';
 import 'base_widget.dart';
 
@@ -37,6 +38,7 @@ abstract class BaseStatefulPage<VM extends BaseVM, B extends BasePage<VM>>
   void _onBaseModelReady(VM model) {
     _theme = Provider.of<AppVM>(context).theme;
     onModelReady(model);
+    listenErrorSubject(_viewModel);
   }
 
   get theme => _theme;
@@ -102,6 +104,37 @@ abstract class BaseStatefulPage<VM extends BaseVM, B extends BasePage<VM>>
   void dispose() {
     getViewModel().dispose();
     super.dispose();
+  }
+
+  showSnackBar(String message) {
+    scaffoldKey.currentState.showSnackBar(SnackBar(
+      backgroundColor: AppColors.black,
+      content: Row(
+        children: [
+          Text(
+            message,
+            style: TextStyle(color: AppColors.white),
+          ),
+        ],
+      ),
+    ));
+  }
+
+  void listenErrorSubject(BaseVM viewModel) {
+    viewModel.errorSubject.stream.listen((value) {
+      switch (value.code) {
+        case StatusCode.NO_ERROR:
+          break;
+        case StatusCode.NETWORK_ERROR:
+          showSnackBar('Please check your network connection');
+          break;
+        case StatusCode.GENERAL_ERROR:
+          showSnackBar('Sorry we have encountered some error');
+          break;
+        case CustomStatusCode.PROVINCE_NOT_FOUND:
+          showSnackBar('There are no provinces found');
+      }
+    });
   }
 }
 

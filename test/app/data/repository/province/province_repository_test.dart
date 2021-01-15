@@ -37,7 +37,7 @@ void main() {
       //Result
       Resource<List<Province>> expected =
           Resource.error<List<Province>>(code: StatusCode.NETWORK_ERROR);
-      expect(result.code, expected.code);
+      expect(result.exception.code, expected.exception.code);
     });
 
     test('getProvinces_generalError_errorReturned', () async {
@@ -53,7 +53,7 @@ void main() {
       //Result
       Resource<List<Province>> expected =
           Resource.error<List<Province>>(code: StatusCode.GENERAL_ERROR);
-      expect(result.code, expected.code);
+      expect(result.exception.code, expected.exception.code);
     });
 
     test('getProvinces_success_successReturned', () async {
@@ -69,7 +69,7 @@ void main() {
 
       //Result
       Resource<List<Province>> expected = Resource.success<List<Province>>();
-      expect(result.status, expected.status);
+      expect(result.exception.status, expected.exception.status);
     });
 
     test('getProvinces_failed_errorReturned', () async {
@@ -85,7 +85,7 @@ void main() {
 
       //Result
       Resource<List<Province>> expected = Resource.error<List<Province>>();
-      expect(result.status, expected.status);
+      expect(result.exception.status, expected.exception.status);
     });
   });
 }

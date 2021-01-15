@@ -16,6 +16,9 @@ class JobResponse extends BaseTransformer<JobResponse, List<Job>> {
 
   List<JobEntity> jobs;
 
+  @JsonKey(name: 'errorCode', defaultValue: "", includeIfNull: false)
+  String errorCode;
+
   @JsonKey(defaultValue: [])
   List<ProvinceEntity> province;
 
