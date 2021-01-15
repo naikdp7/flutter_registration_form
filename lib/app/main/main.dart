@@ -1,12 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/all.dart';
 import 'package:registration_form/app/base/base_widget.dart';
-import 'package:registration_form/data/di/providers.dart';
-import 'package:registration_form/domain/di/providers.dart';
 
-import '../di/providers.dart';
 import 'app.dart';
 import 'app_vm.dart';
 
@@ -14,11 +11,9 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runZoned(() {
     runApp(
-      MultiProvider(providers: [
-        ...dataProviders,
-        ...domainProviders,
-        ...appProviders,
-      ], child: MainApp()),
+      ProviderScope(
+        child: MainApp(),
+      ),
     );
   });
   // entry point for the app

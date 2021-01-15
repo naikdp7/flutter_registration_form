@@ -3,9 +3,9 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:registration_form/data/network/api_service.dart';
 import 'package:registration_form/data/network/response/province_response.dart';
-import 'package:registration_form/data/repository/province/province_repository.dart';
+import 'package:registration_form/data/network/service/rest/api_service.dart';
+import 'package:registration_form/data/repository/province/province_repository_impl.dart';
 import 'package:registration_form/data/source/province/remote/province_remote_repository_ds.dart';
 import 'package:registration_form/domain/model/province.dart';
 import 'package:registration_form/domain/utils/resource.dart';

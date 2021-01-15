@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:registration_form/app/base/base_page.dart';
 import 'package:registration_form/app/constants/app_colors.dart';
+import 'package:registration_form/app/di/provider.dart';
 import 'package:registration_form/app/feature/reviewdata/ktpaddressdata_view.dart';
 import 'package:registration_form/app/navigation/route_paths.dart';
 import 'package:registration_form/data/model/ktpaddress.dart';
@@ -11,7 +12,6 @@ import 'package:registration_form/generated/l10n.dart';
 
 import 'ktpaddressdata_mobile_view.dart';
 import 'ktpaddressdata_vm.dart';
-import 'provincelist_vm.dart';
 
 class KtpAddressDataView extends BasePage<KtpAddressDataVM> {
   final Personal personal;
@@ -94,7 +94,8 @@ class _KtpAddressDataViewState
 
   @override
   KtpAddressDataVM initViewModel() {
-    return KtpAddressDataVM(ProvinceListVM(Provider.of(context)));
+    ProviderContainer providerContainer = ProviderScope.containerOf(context);
+    return providerContainer.read(ktpAddressVmProvider);
   }
 
   void toReviewStep(KtpAddress ktpAddress) {

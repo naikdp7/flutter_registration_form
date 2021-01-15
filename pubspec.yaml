@@ -25,6 +25,8 @@ dependencies:
   json_annotation: any
   reflectable: ^2.2.4
   mockito: 4.0.0
+  graphql: ^3.1.0
+  flutter_riverpod: ^0.12.1
 
 dev_dependencies:
   flutter_test:
