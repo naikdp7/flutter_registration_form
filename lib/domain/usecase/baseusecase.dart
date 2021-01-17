@@ -4,4 +4,4 @@ abstract class BaseUseCase<BaseUseCaseParam> {
   Future<Resource<dynamic>> execute({BaseUseCaseParam params});
 }
 
-class BaseUseCaseParam {}
+abstract class BaseUseCaseParam {}

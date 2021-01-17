@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/all.dart';
+import 'package:provider/provider.dart' as provider;
+import 'package:registration_form/data/di/provider.dart';
+import 'package:registration_form/data/local/user_store.dart';
+import 'package:registration_form/domain/model/user.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:registration_form/app/constants/app_colors.dart';
 import 'package:registration_form/app/main/app_vm.dart';
@@ -24,6 +28,7 @@ abstract class BaseStatefulPage<VM extends BaseVM, B extends BasePage<VM>>
 
   VM _viewModel;
   ThemeData _theme;
+  UserStore userStore;
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +36,22 @@ abstract class BaseStatefulPage<VM extends BaseVM, B extends BasePage<VM>>
       /// We have not used singleton as we want to have a unique state for each page.
       /// This page may contain multiple other ViewModels to avoid reloading on entire page.
       _viewModel = initViewModel();
+      ProviderContainer providerContainer = ProviderScope.containerOf(context);
+      userStore = providerContainer.read(userStoreProvider);
     }
     return _getLayout();
   }
 
+  Future<User> getCurrentUser() async {
+    try {
+      return userStore.getCurrentUser();
+    } catch (exception) {
+      return null;
+    }
+  }
+
   void _onBaseModelReady(VM model) {
-    _theme = Provider.of<AppVM>(context).theme;
+    _theme = provider.Provider.of<AppVM>(context).theme;
     onModelReady(model);
     listenErrorSubject(_viewModel);
   }
@@ -61,15 +76,26 @@ abstract class BaseStatefulPage<VM extends BaseVM, B extends BasePage<VM>>
           onModelReady: _onBaseModelReady,
           builder: (BuildContext context, VM model, Widget child) {
             return Scaffold(
-                key: _scaffoldKey,
-                appBar: buildAppbar(),
-                body: _buildScafoldBody());
+              key: _scaffoldKey,
+              appBar: buildAppbar(),
+              body: _buildScafoldBody(),
+              drawer: drawer(),
+              endDrawer: endDrawer(),
+            );
           }),
     );
   }
 
   /// Building a appbar of screen
   Widget buildAppbar() {
+    return null;
+  }
+
+  Widget drawer() {
+    return null;
+  }
+
+  Widget endDrawer() {
     return null;
   }
 
@@ -154,7 +180,7 @@ class DataProviderElement<T> extends ComponentElement {
 
   @override
   Widget build() {
-    return widget.build(this, Provider.of<T>(this));
+    return widget.build(this, provider.Provider.of<T>(this));
   }
 
   @override

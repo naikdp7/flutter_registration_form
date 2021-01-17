@@ -30,6 +30,8 @@ class StatusCode {
 
 class CustomStatusCode extends StatusCode {
   static const PROVINCE_NOT_FOUND = 4;
+  static const USER_NOT_ADDED = 5;
+  static const USER_NOT_UPDATED = 6;
 }
 
 class CustomException {

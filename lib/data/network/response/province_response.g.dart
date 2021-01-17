@@ -15,7 +15,7 @@ ProvinceResponse _$ProvinceResponseFromJson(Map<String, dynamic> json) {
         ?.toList(),
     error: json['error'] as bool ?? false,
     message: json['message'] as String ?? '',
-  );
+  )..errorCode = json['errorCode'] as String ?? '';
 }
 
 Map<String, dynamic> _$ProvinceResponseToJson(ProvinceResponse instance) {
@@ -29,6 +29,7 @@ Map<String, dynamic> _$ProvinceResponseToJson(ProvinceResponse instance) {
 
   writeNotNull('error', instance.error);
   writeNotNull('message', instance.message);
+  writeNotNull('errorCode', instance.errorCode);
   val['provinsi'] = instance.provinces;
   return val;
 }

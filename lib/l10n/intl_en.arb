@@ -39,5 +39,15 @@
   "residenceRequiredError": "Residence is required",
   "blockNumberRequiredError": "Block is required",
   "reviewData": "Review Data",
-  "finish": "Finish"
+  "finish": "Finish",
+  "email": "Email",
+  "emailHint": "Enter email id",
+  "name": "Name",
+  "nameHint": "Enter your name",
+  "submit": "Submit",
+  "signUp": "Sign up",
+  "emptyNameError": "Please enter your name",
+  "emptyEmailError": "Please enter your email",
+  "inValidEmailError": "Please enter valid email id",
+  "completeProfile": "Complete Profile"
 }

@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:registration_form/app/feature/addressdata/ktpaddressdata_view.dart';
+import 'package:registration_form/app/feature/dashboard/dashboard_view.dart';
 import 'package:registration_form/app/feature/personaldata/personaldata_view.dart';
 import 'package:registration_form/app/feature/reviewdata/ktpaddressdata_view.dart';
 import 'package:registration_form/app/feature/splash/splashview.dart';
+import 'package:registration_form/app/feature/user_registration/user_registration_view.dart';
 import 'package:registration_form/app/navigation/route_paths.dart';
 
 class AppRouter {
@@ -33,6 +35,17 @@ class AppRouter {
           settings: RouteSettings(name: RoutePaths.ReviewData),
         );
 
+      case RoutePaths.UserRegistration:
+        return CupertinoPageRoute(
+          builder: (context) => UserRegistrationView(),
+          settings: RouteSettings(name: RoutePaths.UserRegistration),
+        );
+
+      case RoutePaths.Dashboard:
+        return CupertinoPageRoute(
+          builder: (context) => DashboardView(),
+          settings: RouteSettings(name: RoutePaths.Dashboard),
+        );
       default:
         return MaterialPageRoute(
           builder: (context) => Container(),

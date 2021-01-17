@@ -7,6 +7,8 @@ class SplashVM extends BaseVM {
 
   PublishSubject<bool> get onBoardUser => _onBoardUserObservable;
 
+  SplashVM();
+
   @override
   void initState() {
     super.initState();
@@ -15,11 +17,14 @@ class SplashVM extends BaseVM {
 
   void navigateToStep1() {
     addCompositeDisposable(
-        Rx.timer(true, Duration(seconds: 3)).listen((status) {
-      if (status) {
-        _onBoardUserObservable.add(true);
-      }
-    }));
+      Rx.timer(true, Duration(seconds: 3)).listen(
+        (status) {
+          if (status) {
+            _onBoardUserObservable.add(true);
+          }
+        },
+      ),
+    );
   }
 
   @override

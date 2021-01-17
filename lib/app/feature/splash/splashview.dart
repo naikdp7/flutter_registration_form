@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/all.dart';
 import 'package:registration_form/app/base/base_page.dart';
 import 'package:registration_form/app/constants/app_colors.dart';
+import 'package:registration_form/app/di/provider.dart';
 import 'package:registration_form/app/navigation/route_paths.dart';
+import 'package:registration_form/domain/model/user.dart';
 
 import 'splasvm.dart';
 
@@ -14,9 +17,14 @@ class SplashView extends BasePage<SplashVM> {
 class _SplashViewState extends BaseStatefulPage<SplashVM, SplashView> {
   @override
   void onModelReady(SplashVM model) {
-    getViewModel().onBoardUser.listen((value) {
+    getViewModel().onBoardUser.listen((value) async {
       if (value) {
-        Navigator.pushReplacementNamed(context, RoutePaths.PersonalData);
+        User user = await getCurrentUser();
+        if (user == null) {
+          Navigator.pushReplacementNamed(context, RoutePaths.UserRegistration);
+        } else {
+          Navigator.pushReplacementNamed(context, RoutePaths.Dashboard);
+        }
       }
     });
   }
@@ -35,6 +43,7 @@ class _SplashViewState extends BaseStatefulPage<SplashVM, SplashView> {
 
   @override
   SplashVM initViewModel() {
-    return SplashVM();
+    ProviderContainer providerContainer = ProviderScope.containerOf(context);
+    return providerContainer.read(splashVmProvider);
   }
 }

@@ -7,7 +7,7 @@ import 'package:registration_form/app/base/base_widget.dart';
 import 'app.dart';
 import 'app_vm.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runZoned(() {
     runApp(

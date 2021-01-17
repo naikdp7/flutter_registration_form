@@ -4,4 +4,6 @@ class RoutePaths {
   static const String PersonalData = "/personalData";
   static const String AddressData = "/addressData";
   static const String ReviewData = "/reviewData";
+  static const String UserRegistration = "/userRegistration";
+  static const String Dashboard = "/dashboard";
 }

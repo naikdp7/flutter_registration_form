@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:registration_form/domain/usecase/get_current_user_usecase.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../domain/usecase/baseusecase.dart';
@@ -8,16 +9,16 @@ import '../../domain/utils/resource.dart';
 
 class BaseVM extends ChangeNotifier {
   CompositeSubscription compositeDisposable = CompositeSubscription();
-  StreamController<CustomException> _errorSubject =
-      StreamController<CustomException>();
+  PublishSubject<CustomException> errorSubject =
+      PublishSubject<CustomException>();
 
-  StreamController<CustomException> get errorSubject => _errorSubject;
+  final GetCurrentUserUseCase getCurrentUserUseCase;
 
   bool _busy = false;
 
   bool get busy => _busy;
 
-  BaseVM({busy = false}) {
+  BaseVM({busy = false, this.getCurrentUserUseCase}) {
     setBusy(busy);
     initState();
   }
@@ -64,7 +65,7 @@ class BaseVM extends ChangeNotifier {
   @mustCallSuper
   void dispose() {
     onCleared();
-    _errorSubject.close();
+    errorSubject.close();
     super.dispose();
   }
 }

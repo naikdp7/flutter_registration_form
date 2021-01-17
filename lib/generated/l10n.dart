@@ -444,6 +444,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter email id`
+  String get emailHint {
+    return Intl.message(
+      'Enter email id',
+      name: 'emailHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get name {
+    return Intl.message(
+      'Name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your name`
+  String get nameHint {
+    return Intl.message(
+      'Enter your name',
+      name: 'nameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get submit {
+    return Intl.message(
+      'Submit',
+      name: 'submit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign up`
+  String get signUp {
+    return Intl.message(
+      'Sign up',
+      name: 'signUp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your name`
+  String get emptyNameError {
+    return Intl.message(
+      'Please enter your name',
+      name: 'emptyNameError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your email`
+  String get emptyEmailError {
+    return Intl.message(
+      'Please enter your email',
+      name: 'emptyEmailError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter valid email id`
+  String get inValidEmailError {
+    return Intl.message(
+      'Please enter valid email id',
+      name: 'inValidEmailError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complete Profile`
+  String get completeProfile {
+    return Intl.message(
+      'Complete Profile',
+      name: 'completeProfile',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
