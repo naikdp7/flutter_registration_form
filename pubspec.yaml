@@ -29,6 +29,10 @@ dependencies:
   flutter_riverpod: ^0.12.1
   floor: ^0.18.0
 
+dependency_overrides:
+  rxdart: ^0.24.0
+  intl: 0.17.0-nullsafety.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

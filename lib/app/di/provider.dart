@@ -5,6 +5,7 @@ import 'package:registration_form/app/feature/user_registration/user_registratio
 import 'package:registration_form/data/di/provider.dart';
 import 'package:registration_form/data/local/user_store.dart';
 import 'package:registration_form/domain/di/provider.dart';
+import 'package:registration_form/domain/model/user.dart';
 
 import '../feature/addressdata/ktpaddressdata_vm.dart';
 import '../feature/addressdata/provincelist_vm.dart';
@@ -32,7 +33,7 @@ final splashVmProvider = Provider.autoDispose<SplashVM>(
   (ref) => SplashVM(),
 );
 
-final usersProvider = StreamProvider.autoDispose((ref) {
+final usersProvider = StreamProvider<List<User>>((ref) {
   UserStore userStore = ref.read(userStoreProvider);
   return userStore.usersStream;
 });
